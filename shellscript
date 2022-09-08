@@ -1,0 +1,20 @@
+#!/bin/bash
+file=DELETED_MESSAGE
+#*--------------------------------------------*
+removeLine()
+{
+  sed "/$1/d" SYSTEM.properties > SYSTEM.new #Apaga a linha que contem a palavra na variavel $1
+  mv SYSTEM.new SYSTEM.properties
+    
+}
+
+#*--------------------------------------------*
+
+
+
+while IFS= read -r line || [[ -n "$line" ]]; do
+   removeLine $line
+    
+done < "$file"
+
+rm -f $file
